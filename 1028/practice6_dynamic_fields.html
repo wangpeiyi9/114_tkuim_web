@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Practice 6 - 動態欄位表單</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body class="bg-light py-4">
+  <div class="container">
+    <h2 class="mb-3">課程工作坊報名</h2>
+    <p class="text-muted">目前參與者：<span id="count">0</span> / 5</p>
+
+    <!-- 主表單 -->
+    <form id="dynamic-form" novalidate>
+      <!-- 動態產生的參與者區塊 -->
+      <div id="participant-list" class="vstack gap-3 mb-3"></div>
+
+      <!-- 控制按鈕 -->
+      <div class="d-flex gap-2 mb-3">
+        <button id="add-participant" class="btn btn-outline-primary" type="button">
+          新增參與者
+        </button>
+        <button id="submit-btn" class="btn btn-primary" type="submit">
+          送出
+        </button>
+        <button id="reset-btn" class="btn btn-outline-secondary" type="button">
+          重設
+        </button>
+      </div>
+
+      <!-- 條款確認 -->
+      <div class="form-check mb-3">
+        <input
+          id="agree"
+          type="checkbox"
+          class="form-check-input"
+          required
+          aria-describedby="agree-error"
+        />
+        <label class="form-check-label" for="agree">
+          我已閱讀並同意
+          <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">
+            隱私條款
+          </a>
+        </label>
+        <p id="agree-error" class="text-danger small mb-0" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+
+  <!-- 隱私條款 Modal -->
+  <div
+    class="modal fade"
+    id="privacyModal"
+    tabindex="-1"
+    aria-labelledby="privacyModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="privacyModalLabel">隱私條款</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p>本報名表所蒐集的個人資料，僅用於課程聯絡與通知用途，不會提供給第三方。</p>
+          <p>提交此表單前，請確認您已閱讀並同意本隱私條款內容。</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            id="confirm-privacy"
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+          >
+            我已閱讀並同意
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (含 Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- 主要邏輯 -->
+  <script src="practice6_dynamic_fields.js"></script>
+</body>
+</html>
