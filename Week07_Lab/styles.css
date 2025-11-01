@@ -1,0 +1,10 @@
+body {
+  font-family: "Microsoft JhengHei", sans-serif;
+}
+
+.strength-bar {
+  height: 6px;
+  width: 0%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  border-radius: 3px;
+}
