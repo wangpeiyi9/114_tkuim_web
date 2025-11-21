@@ -1,19 +1,31 @@
 ### 狀態檢查
 GET http://localhost:3001/health
 
-### 建立報名
+### 取得清單
+GET http://localhost:3001/api/signup
+
+### 建立報名（成功）
 POST http://localhost:3001/api/signup
 Content-Type: application/json
 
 {
-  "name": "REST Client",
-  "email": "rest@example.com",
-  "phone": "0988777666",
-  "password": "restrest",
-  "confirmPassword": "restrest",
-  "interests": ["全端"],
-  "terms": true
+  "name": "小明",
+  "email": "test@test.com",
+  "phone": "0912345678",
+  "password": "demoPass88",
+  "confirmPassword": "demoPass88",
+  "interests": ["後端入門"]
 }
 
-### 查看清單
-GET http://localhost:3001/api/signup
+### 建立報名（失敗：手機格式錯誤）
+POST http://localhost:3001/api/signup
+Content-Type: application/json
+
+{
+  "name": "錯誤者",
+  "email": "err@test.com",
+  "phone": "123",
+  "password": "demoPass88",
+  "confirmPassword": "demoPass88",
+  "interests": ["後端入門"]
+}

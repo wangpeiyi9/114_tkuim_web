@@ -8,14 +8,19 @@
 <body class="p-4">
   <div class="container">
     <h2 class="mb-3">報名表單</h2>
+
     <form id="signup-form" class="vstack gap-3">
       <input class="form-control" name="name" placeholder="姓名" required>
       <input class="form-control" name="email" type="email" placeholder="Email" required>
       <input class="form-control" name="phone" placeholder="手機號碼 (09 開頭)" required>
-      <button class="btn btn-primary" type="submit">送出</button>
+      <button class="btn btn-primary" type="submit" id="submit-btn">送出</button>
     </form>
+
+    <button class="btn btn-secondary mt-3" id="fetch-list-btn">查看報名清單</button>
+
     <pre id="result" class="bg-light border mt-4 p-3"></pre>
   </div>
+
   <script src="./signup_form.js" type="module"></script>
 </body>
 </html>

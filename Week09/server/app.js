@@ -9,7 +9,12 @@ config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({ origin: process.env.ALLOWED_ORIGIN?.split(',') ?? '*' }));
+app.use(cors({
+  origin: process.env.ALLOWED_ORIGIN
+    ? process.env.ALLOWED_ORIGIN.split(',')
+    : '*'
+}));
+
 app.use(express.json());
 app.use('/api/signup', signupRouter);
 
