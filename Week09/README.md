@@ -52,9 +52,7 @@ npm run dev
 2. File → Import
 3. 匯入 tests/signup_collection.json
 4. 點選：
-- GET /api/signup
-- POST /api/signup
-- 按 Send 測試
+GET /api/signup → POST /api/signup → 按 Send 測試
 
 - 使用 VS Code REST Client
 1. 安裝 REST Client Extension
