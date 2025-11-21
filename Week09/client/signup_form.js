@@ -18,7 +18,6 @@ form.addEventListener('submit', async (event) => {
   const formData = new FormData(form);
   const payload = Object.fromEntries(formData.entries());
 
-  // Week09 作業要求（延用 Week07 邏輯）
   payload.password = payload.confirmPassword = 'demoPass88';
   payload.interests = ['後端入門'];
   payload.terms = true;
@@ -38,7 +37,7 @@ form.addEventListener('submit', async (event) => {
     form.reset();
 
   } catch (err) {
-    resultEl.textContent = `❌ 錯誤：${err.message}`;
+    resultEl.textContent = ` 錯誤：${err.message}`;
   } finally {
     setLoading(false);
   }
@@ -52,6 +51,6 @@ fetchListBtn.addEventListener('click', async () => {
     const data = await res.json();
     resultEl.textContent = JSON.stringify(data, null, 2);
   } catch (err) {
-    resultEl.textContent = `❌ 錯誤：${err.message}`;
+    resultEl.textContent = ` 錯誤：${err.message}`;
   }
 });
