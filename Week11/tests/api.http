@@ -1,0 +1,35 @@
+### 建立報名
+POST http://localhost:3001/api/signup
+Content-Type: application/json
+
+{
+  "name": "測試同學",
+  "email": "test@example.com",
+  "phone": "0911222333"
+}
+
+### 取得報名清單 (分頁)
+GET http://localhost:3001/api/signup?page=1&limit=5
+
+### 更新報名電話
+# 將 {{last_id}} 替換成上一步 POST 回傳的 id
+PATCH http://localhost:3001/api/signup/{{last_id}}
+Content-Type: application/json
+
+{
+  "phone": "0911000111"
+}
+
+### 更新報名狀態
+PATCH http://localhost:3001/api/signup/{{last_id}}
+Content-Type: application/json
+
+{
+  "status": "confirmed"
+}
+
+### 刪除報名
+DELETE http://localhost:3001/api/signup/{{last_id}}
+
+### 再取得清單確認刪除
+GET http://localhost:3001/api/signup?page=1&limit=5
