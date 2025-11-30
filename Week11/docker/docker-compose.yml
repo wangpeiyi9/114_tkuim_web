@@ -11,5 +11,5 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password123
       MONGO_INITDB_DATABASE: week11
     volumes:
-      - ./mongo-data:/data/db          # 保留資料
+      - ./mongo-data:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/init.js:ro
