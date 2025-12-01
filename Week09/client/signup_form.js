@@ -2,7 +2,7 @@ const form = document.querySelector('#signup-form');
 const submitBtn = document.querySelector('#submit-btn');
 const resultEl = document.querySelector('#result');
 
-const API_BASE = 'http://localhost:3001/api/signup';
+const API_BASE = '/api/signup';
 
 // Loading 開關
 function setLoading(isLoading) {

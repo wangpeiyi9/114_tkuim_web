@@ -23,105 +23,43 @@ npm run dev
 ## 測試方式
 - 使用 VS Code REST Client
 1. 先執行 POST /api/signup，MongoDB 會回傳 JSON，例如：{ "id": "654abc123def4567890" }
-2. 將所有 {{last_id}} 替換成回傳的 id。
-3. 全選後按 Send Request
+2. 將所有 last_id 替換成回傳的 id。
+3. 按 Send Request 測試
 
 - 使用 Postman
-1. 打開 Postman → 點擊左上角 Import。
-2. 選擇 Raw Text，貼上上面 JSON，然後 Import。
-3. 執行 建立報名（POST），回傳 JSON 會包含 _id。
-4. 手動將 Postman 變數 last_id 設為這個 _id，之後所有 PATCH / DELETE 會自動套用。
-5. GET 可以檢查分頁，確認 CRUD 是否成功。
-6. (以下為腳本)  
-  {  
-  "info": {  
-    "_postman_id": "week11-crud-demo",  
-    "name": "Week11 Signup API",  
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"  
-  },  
-  "item": [  
-    {  
-      "name": "建立報名",  
-      "request": {  
-        "method": "POST",  
-        "header": [  
-          { "key": "Content-Type", "value": "application/json" }  
-        ],  
-        "body": {  
-          "mode": "raw",  
-          "raw": "{\n  \"name\": \"測試同學\",\n  \"email\": \"test@example.com\",\n  \"phone\": \"0911222333\"\n}"  
-        },  
-        "url": { "raw": "http://localhost:3001/api/signup", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["api", "signup"] }  
-      },  
-      "response": []  
-    },  
-    {  
-      "name": "取得報名清單",  
-      "request": {  
-        "method": "GET",  
-        "header": [],  
-        "url": { "raw": "http://localhost:3001/api/signup?page=1&limit=5", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["api", "signup"], "query": [{"key":"page","value":"1"},{"key":"limit","value":"5"}] }  
-      },  
-      "response": []  
-    },  
-    {  
-      "name": "更新報名電話",  
-      "request": {  
-        "method": "PATCH",  
-        "header": [  
-          { "key": "Content-Type", "value": "application/json" }  
-        ],  
-        "body": {  
-          "mode": "raw",  
-          "raw": "{\n  \"phone\": \"0911000111\"\n}"  
-        },  
-        "url": { "raw": "http://localhost:3001/api/signup/{{last_id}}", "protocol": "http",   "host": ["localhost"], "port": "3001", "path": ["api", "signup", "{{last_id}}"] }  
-      },  
-      "response": []  
-    },  
-    {  
-      "name": "更新報名狀態",  
-      "request": {  
-        "method": "PATCH",  
-        "header": [  
-          { "key": "Content-Type", "value": "application/json" }  
-        ],  
-        "body": {  
-          "mode": "raw",  
-          "raw": "{\n  \"status\": \"confirmed\"\n}"  
-        },  
-        "url": { "raw": "http://localhost:3001/api/signup/{{last_id}}", "protocol": "http",   "host": ["localhost"], "port": "3001", "path": ["api", "signup", "{{last_id}}"] }  
-      },  
-      "response": []  
-    },  
-    {  
-      "name": "刪除報名",  
-      "request": {   
-        "method": "DELETE",  
-        "header": [],  
-        "url": { "raw": "http://localhost:3001/api/signup/{{last_id}}", "protocol": "http",   "host": ["localhost"], "port": "3001", "path": ["api", "signup", "{{last_id}}"] }  
-      },  
-      "response": []  
-    }  
-  ]  
+1. 建立 Collection
+2. 新增 POST 請求（建立報名）  
+Method: POST  
+URL: http://localhost:3001/api/signup  
+Body → 選 raw → JSON，範例：  
+{  
+  "name": "測試同學",  
+  "email": "test@example.com",  
+  "phone": "0911222333",  
 }  
+3. 取得回傳 id 之後替代 last_id
 
-- Mongo Shell 指令範例
+- 更新報名電話
+Method: PATCH  
+URL: http://localhost:3001/api/signup/last_id  
+Body → raw → JSON：  
+{  
+  "phone": "0911000111"  
+} 
+- 刪除報名
+Method: DELETE  
+URL: http://localhost:3001/api/signup/last_id  
+Body: 留空
+
+## Mongo Shell 指令範例  
 確保 MongoDB 已經啟動，然後在終端機輸入：  
-
-// 連線到 week11 資料庫
+- 連線到 week11 資料庫  
 mongosh -u week11-user -p week11-pass --authenticationDatabase week11  
-
-// 切換資料庫
+- 切換資料庫  
 use week11
-
-// 查看 participants collection 所有資料
+- 查看 participants collection 所有資料  
 db.participants.find().pretty()
-
-// 建立唯一索引（email 唯一）
-db.participants.createIndex({ email: 1 }, { unique: true })
-
-// 新增一筆測試資料
+- 新增一筆測試資料  
 db.participants.insertOne({
   name: "測試同學",
   email: "test2@example.com",
@@ -130,14 +68,12 @@ db.participants.insertOne({
   createdAt: new Date(),
   updatedAt: new Date()
 })
-
-// 更新資料
+- 更新資料  
 db.participants.updateOne(
   { email: "test2@example.com" },
   { $set: { phone: "0911000333", updatedAt: new Date() } }
 )
-
-// 刪除資料
+- 刪除資料  
 db.participants.deleteOne({ email: "test2@example.com" })
 
 ## 常見問題 (FAQ)
@@ -157,5 +93,15 @@ db.participants.deleteOne({ email: "test2@example.com" })
 
 - Q4：重複 email 新增失敗？  
 系統已建立唯一索引，遇到重複 email 會回傳錯誤訊息
+
+## .env欄位用途
+1. PORT=3001    
+後端 API Server 的啟動 port，預設為 3001。若與其他服務衝突可自行更改。
+
+2. MONGODB_URI=mongodb://week11-user:week11-pass@localhost:27017/week11?authSource=week11  
+MongoDB 的連線字串，包含登入帳號、密碼、主機位置、資料庫名稱等。
+
+3. ALLOWED_ORIGIN=http://localhost:5173  
+CORS 設定，允許前端以哪個 domain 來呼叫後端 API。  
 
 ![MongoDB Compass 截圖](./screenshots/MongoDB%20Compass%20截圖.png)
