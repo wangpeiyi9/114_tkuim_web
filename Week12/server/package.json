@@ -1,0 +1,29 @@
+{
+  "name": "week12-server",
+  "version": "1.0.0",
+  "description": "Week12 作業",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "vitest run tests/week12.test.js",
+    "test:all": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.8.0",
+    "nanoid": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "vitest": "^1.6.0",
+    "supertest": "^6.3.4",
+    "mongodb-memory-server": "^9.0.0"
+  }
+}

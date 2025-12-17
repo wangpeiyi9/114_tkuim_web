@@ -1,0 +1,74 @@
+### Week12 API 測試
+@baseUrl = http://localhost:3001
+
+### === 步驟 1: 登入 ===
+
+### 登入管理員
+# @name adminLogin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "admin123"
+}
+
+### 登入學生
+# @name studentLogin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "student@example.com",
+  "password": "admin123"
+}
+
+### === 步驟 2: 設定變數 ===
+
+@adminToken = {{adminLogin.response.body.token}}
+@studentToken = {{studentLogin.response.body.token}}
+
+### === 步驟 3: 創建測試資料 ===
+
+### 學生創建資料
+# @name createStudentData
+POST {{baseUrl}}/api/signup
+Content-Type: application/json
+Authorization: Bearer {{studentToken}}
+
+{
+  "name": "測試學生",
+  "email": "student-test-data@example.com",
+  "phone": "0912345678"
+}
+
+### 管理員創建資料
+# @name createAdminData
+POST {{baseUrl}}/api/signup
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "name": "測試管理員",
+  "email": "admin-test-data@example.com",
+  "phone": "0987654321"
+}
+
+### === 步驟 4: 設定資料 ID 變數 ===
+
+@studentDataId = {{createStudentData.response.body.id}}
+@adminDataId = {{createAdminData.response.body.id}}
+
+### === 步驟 5: 權限測試 ===
+
+### 學生嘗試刪除管理員資料（應 403）
+DELETE {{baseUrl}}/api/signup/{{adminDataId}}
+Authorization: Bearer {{studentToken}}
+
+### 學生刪除自己資料（應 200）
+DELETE {{baseUrl}}/api/signup/{{studentDataId}}
+Authorization: Bearer {{studentToken}}
+
+### 管理員刪除自己資料（應 200）
+DELETE {{baseUrl}}/api/signup/{{adminDataId}}
+Authorization: Bearer {{adminToken}}
