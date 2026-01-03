@@ -1,0 +1,14 @@
+/* 可以留空或加入基本樣式 */
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  color: #444;
+  margin-top: 0;
+}
