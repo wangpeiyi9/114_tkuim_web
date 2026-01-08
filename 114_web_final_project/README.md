@@ -48,7 +48,7 @@ cd 114_tkuim_web/project-final
 
 2. 啟動資料庫 (Docker Compose)  
 cd docker  
-docker-compose up -d
+docker compose up -d
 
 3. 安裝後端依賴  
 cd ../backend  
@@ -59,10 +59,13 @@ cd ../frontend
 npm install
 
 5. 啟動服務  
-- 終端機1 - 後端：  
+- 終端機1：  
+cd docker && docker compose up -d
+
+- 終端機2：  
 cd backend && npm run dev
 
-- 終端機2 - 前端：  
+- 終端機3：  
 cd frontend && npm start
 
 ### 使用指引
