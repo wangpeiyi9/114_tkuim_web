@@ -1,188 +1,19 @@
-# ========== Node.js 依賴套件 ==========
+# 依賴
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-yarn.lock
-.pnpm-store/
 
-# ========== 環境變數檔案 ==========
+# 環境
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env.*.local
 
-# ========== Docker 相關 ==========
-# MongoDB 資料庫檔案 (絕對不要提交!)
+# MongoDB 資料
 docker/mongo-data/
-!docker/mongo-data/.gitkeep  # 保留空資料夾結構
-
-# MongoDB 內部檔案
 *.wt
-*.wt.spl
-*.turtle
-*.lock
 WiredTiger*
-diagnostic.data/
 journal/
-_mdb_catalog.wt
-_sizeStorer.wt
-collection-*.wt
-index-*.wt
 
-# ========== 前端建置輸出 ==========
-# React/Vite 建置結果
-dist/
+# 建置
 build/
-out/
-.next/
-.gatsby-context.js
+dist/
 
-# ========== 後端建置輸出 ==========
-# Node.js 編譯輸出
-*.js.map
-*.d.ts
-coverage/
-.nyc_output/
-
-# ========== 作業系統檔案 ==========
+# 系統
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-desktop.ini
-
-# ========== IDE 和編輯器 ==========
-# Visual Studio Code
-.vscode/
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
-
-# IntelliJ IDEA
-.idea/
-*.iml
-*.iws
-*.ipr
-
-# 其他編輯器
-*.swp
-*.swo
-*~
-.project
-.classpath
-.settings/
-
-# ========== 日誌檔案 ==========
 *.log
-logs/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
-
-# ========== 測試相關 ==========
-# 測試覆蓋率
-coverage/
-.nyc_output/
-
-# 單元測試快取
-.jest/
-.vscode-test/
-
-# ========== 暫存和快取 ==========
-.cache/
-.tmp/
-temp/
-*.tmp
-*.temp
-
-# ========== 套件管理器特定 ==========
-# pnpm
-node_modules/.pnpm-store/
-.pnpm-store/
-
-# ========== 安全性 ==========
-# 憑證和密鑰
-*.pem
-*.key
-*.crt
-*.csr
-*.p12
-*.pfx
-*.der
-*.cer
-
-# ========== 系統檔案 ==========
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Windows
-[Dd]esktop.ini
-$RECYCLE.BIN/
-Thumbs.db
-
-# Linux
-*~
-
-# ========== 文件生成 ==========
-# 自動生成的文件
-*.aux
-*.toc
-*.out
-*.log
-*.bbl
-*.blg
-*.fls
-*.fdb_latexmk
-
-# ========== 其他 ==========
-# 臨時檔案
-*.swp
-*.swo
-*~
-
-# 壓縮檔案
-*.zip
-*.tar.gz
-*.tgz
-
-# 二進位檔案
-*.exe
-*.dll
-*.so
-*.dylib
-*.bin
-*.class
-*.jar
-*.war
-*.ear
-*.app
-*.ipa
-*.apk
-
-# 多媒體檔案
-*.mp4
-*.mov
-*.avi
-*.mkv
-*.mp3
-*.wav
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.bmp
-*.ico
-*.svg
