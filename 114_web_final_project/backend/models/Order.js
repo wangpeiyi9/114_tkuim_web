@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// 定義訂單資料模型
 const orderSchema = new mongoose.Schema({
     customerName: {
         type: String,
@@ -45,12 +44,6 @@ const orderSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-});
-
-// 更新時間戳記
-orderSchema.pre('save', function(next) {
-    this.updatedAt = Date.now();
-    next();
 });
 
 // 建立 Order 模型
